@@ -1,6 +1,6 @@
 # Automatic tests for my StarWarsApi site
 Project that is used for testing my StarWarsApi site, and its functions.<br>
-It was made for learning purposes, and to show my abilities of working with Playwright.
+It was made for learning purposes, and to show my abilities of working with Playwright.<br>
 It has tests like checking if sites are loading correctly.
 ## Links
 - StarWarsApi repository https://github.com/IgorMatlingiewicz/StarWarsApi
