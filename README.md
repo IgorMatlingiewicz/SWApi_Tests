@@ -15,8 +15,6 @@ It has tests like checking if sites are loading correctly.
 `npx playwright test --headed`
 - view report  
 `npx playwright show-report`
-- cancelling Node process  
-hit twice <kbd>Ctrl</kbd> + <kbd>C</kbd>
 
 ## Playwright Config modifications
 - config file `playwright.config.ts`
