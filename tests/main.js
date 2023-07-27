@@ -1,0 +1,1 @@
+export const mainURL = 'https://my-starwarsapi-site.netlify.app/html/menu.html';
