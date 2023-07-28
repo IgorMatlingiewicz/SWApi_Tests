@@ -32,4 +32,3 @@ It has tests like checking if sites are loading correctly.
 StarWarsApi site
 ![Alt text](/screenshots/site.jpg?raw=true "menu")
 Some tests results
-![Alt text](/screenshots/testsResults.jpg?raw=true "menu")
