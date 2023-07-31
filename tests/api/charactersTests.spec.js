@@ -1,39 +1,36 @@
 import { test, expect } from '@playwright/test';
-import { mainAPIURL } from '../main';
+import { baseUrl } from '../main';
 
+// const baseUrl = "https://swapi.dev/api/"
 
-test.describe('Basic characters tests', () => {
-  test('First character by name', async ({ page }) => {
-    const response = await page.evaluate((url) => {
-      return fetch( url + 'people/1/').then((res) => res.json());
-    }, mainAPIURL);
+test.describe.parallel('Basic characters tests', () => {
 
-    expect(response.name).toBe('Luke Skywalker');
-  });
+    test.only('First character by name', async ({ request }) => {
+        const response = await request.get(baseUrl + `people/1/`)
+        expect(response.status()).toBe(200)
 
-  test('Last character by name', async ({ page }) => {
-    const response = await page.evaluate((url) => {
-      return fetch( url + 'people/83/').then((res) => res.json());
-    }, mainAPIURL);
+        const responseBody = JSON.parse(await response.text())
+        expect(responseBody.name).toBe('Luke Skywalker')
+    })
 
-    expect(response.name).toBe('Tion Medon');
-  });
+    test.only('Last character by name', async ({ request }) => {
+        const response = await request.get(baseUrl + `people/83/`)
+        expect(response.status()).toBe(200)
+
+        const responseBody = JSON.parse(await response.text())
+        expect(responseBody.name).toBe('Tion Medon')
+    })
 })
 
-test.describe('Non existing characters tests', () => {
-  test('Character with too high number', async ({ page }) => {
-    const response = await page.evaluate((url) => {
-      return fetch(url + 'people/100/').then((res) => res.status);
-    }, mainAPIURL);
+test.describe.parallel('Invalid characters tests', () => {
 
-    expect(response).toBe(404);
-  });
+    test.only('Character with too high number', async ({ request }) => {
+        const response = await request.get(baseUrl + `people/100/`)
+        expect(response.status()).toBe(404)
+    })
 
-  test('Character with number 0', async ({ page }) => {
-    const response = await page.evaluate((url) => {
-      return fetch(url + 'people/0/').then((res) => res.status);
-    }, mainAPIURL);
-
-    expect(response).toBe(404);
-  });
+    test.only('Character with number 0', async ({ request }) => {
+        const response = await request.get(baseUrl + `people/0/`)
+        expect(response.status()).toBe(404)
+    })
 })
