@@ -1,10 +1,11 @@
 import { test, expect } from '@playwright/test';
-import { mainURL } from '../main';
+
+const WebBaseURL = 'https://my-starwarsapi-site.netlify.app/html/menu.html';
 
 test.describe('Checking if main sites work correctly', () => {
   test('Checking characters site', async ({ page }) => {
     // given
-    await page.goto(mainURL);
+    await page.goto(WebBaseURL);
 
     // when
     await page.getByTestId('characters_link').click();
@@ -16,7 +17,7 @@ test.describe('Checking if main sites work correctly', () => {
 
   test('Checking planets site', async ({ page }) => {
     // given
-    await page.goto(mainURL);
+    await page.goto(WebBaseURL);
 
     // when
     await page.getByTestId('planets_link').click();

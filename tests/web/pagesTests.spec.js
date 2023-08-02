@@ -1,10 +1,11 @@
 import { test, expect } from '@playwright/test';
-import { mainURL } from '../main';
+
+const WebBaseURL = 'https://my-starwarsapi-site.netlify.app/html/menu.html';
 
 test.describe('Checking changing pages functions', () => {
-    test('Trying to change to site 0', async ({ page }) => {
+    test('Trying to change to site 0', async ({ page}) => {
         //given
-        await page.goto(mainURL);
+        await page.goto(WebBaseURL);
         await page.getByTestId('characters_link').click();
 
         //when
@@ -16,7 +17,7 @@ test.describe('Checking changing pages functions', () => {
 
     test('Trying to change too far', async ({ page }) => {
         //given
-        await page.goto(mainURL);
+        await page.goto(WebBaseURL);
         await page.getByTestId('characters_link').click();
 
         //when
