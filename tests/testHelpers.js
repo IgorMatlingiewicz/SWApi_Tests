@@ -1,14 +1,27 @@
-import { test, expect } from '@playwright/test';
+import { expect } from '@playwright/test';
 
-export async function runPositiveTest(request, baseURL, endpoint, id, expectedName) {
-    const response = await request.get(`${baseURL}/${endpoint}/${id}/`);
+export async function runPositiveCharacterTest(request, baseURL, id, expectedName) {
+    const response = await request.get(`${baseURL}/people/${id}/`);
     expect(response.status()).toBe(200);
 
     const responseBody = JSON.parse(await response.text());
     expect(responseBody.name).toBe(expectedName);
 }
 
-export async function runInvalidTest(request, baseURL, endpoint, id) {
-    const response = await request.get(`${baseURL}/${endpoint}/${id}/`);
+export async function runInvalidCharacterTest(request, baseURL, id) {
+    const response = await request.get(`${baseURL}/people/${id}/`);
+    expect(response.status()).toBe(404);
+}
+
+export async function runPositivePlanetTest(request, baseURL, id, expectedName) {
+    const response = await request.get(`${baseURL}/planets/${id}/`);
+    expect(response.status()).toBe(200);
+
+    const responseBody = JSON.parse(await response.text());
+    expect(responseBody.name).toBe(expectedName);
+}
+
+export async function runInvalidPlanetTest(request, baseURL, id) {
+    const response = await request.get(`${baseURL}/planets/${id}/`);
     expect(response.status()).toBe(404);
 }

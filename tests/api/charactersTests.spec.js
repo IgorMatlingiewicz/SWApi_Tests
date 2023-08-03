@@ -1,22 +1,22 @@
-import { test, expect } from '@playwright/test';
-import { runPositiveTest, runInvalidTest } from '../testHelpers.js';
+import { test } from '@playwright/test';
+import { runPositiveCharacterTest, runInvalidCharacterTest } from '../testHelpers.js';
 
 test.describe.parallel('Basic characters tests', () => {
     test('First character by name', async ({ request, baseURL }) => {
-        await runPositiveTest(request, baseURL, 'people', 1, 'Luke Skywalker');
+        await runPositiveCharacterTest(request, baseURL, 1, 'Luke Skywalker');
     });
 
     test('Last character by name', async ({ request, baseURL }) => {
-        await runPositiveTest(request, baseURL, 'people', 83, 'Tion Medon');
+        await runPositiveCharacterTest(request, baseURL, 83, 'Tion Medon');
     });
 });
 
 test.describe.parallel('Invalid characters tests', () => {
     test('Character with too high number', async ({ request, baseURL }) => {
-        await runInvalidTest(request, baseURL, 'people', 100);
+        await runInvalidCharacterTest(request, baseURL, 100);
     });
 
     test('Character with number 0', async ({ request, baseURL }) => {
-        await runInvalidTest(request, baseURL, 'people', 0);
+        await runInvalidCharacterTest(request, baseURL, 0);
     });
 });
